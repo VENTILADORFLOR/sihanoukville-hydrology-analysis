@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints
+.vscode/
+.env
+.venv/
+=======
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -130,11 +139,16 @@ celerybeat.pid
 # Environments
 .env
 .venv
+>>>>>>> 37af320056013c644d7b334b433ada1f5e20e6cd
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+<<<<<<< HEAD
+.DS_Store
+outputs/
+=======
 
 # Spyder project settings
 .spyderproject
@@ -172,3 +186,4 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+>>>>>>> 37af320056013c644d7b334b433ada1f5e20e6cd
