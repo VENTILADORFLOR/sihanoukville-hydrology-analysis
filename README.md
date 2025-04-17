@@ -1,45 +1,47 @@
-# 🌧️ 西哈努克省水文分析 | Hydrological Analysis in Sihanoukville, Cambodia
-
-本项目致力于对柬埔寨西哈努克省的地形与降雨数据进行系统的水文分析，核心目标是通过 Google Earth Engine 和 Python 构建局地的 IDF（强度-历时-频率）曲线，为雨洪管理与城市基础设施规划提供科学依据。
+# 🌧️ Hydrological Analysis in Sihanoukville, Cambodia
 
 This project focuses on hydrological analysis in Sihanoukville Province, Cambodia, using elevation and rainfall data to derive IDF curves with Google Earth Engine (GEE) and Python. It aims to support stormwater management and infrastructure planning.
 
 ---
 
-## 🔍 项目目标 | Objectives
+## 🔍 Objectives
 
-- 获取并分析西哈努克省的高程（DEM）数据
-- 使用 GEE 提取 CHIRPS / GPM 等降雨数据
-- 建立降雨时序分析与数据清洗逻辑
-- 拟合 IDF 曲线，为不同设计重现期提供参考
-- 构建跨平台数据处理与可视化工具
+- Acquire and analyze Digital Elevation Model (DEM) data for Sihanoukville
+- Extract rainfall data from CHIRPS / IMERG via GEE
+- Establish rainfall time-series processing and data cleaning workflows
+- Fit IDF curves and generate tables for multiple design return periods
+- Build cross-platform tools for data processing and visualization
 
 ---
-## 🧰 使用工具 | Tools & Libraries
+## 🧰 Tools & Libraries
 
 - Google Earth Engine (Python API + JS Editor)
 - Python 3.9+
   - pandas / numpy / matplotlib / scipy
 - Jupyter Notebook
-- 地理数据集：
-  - SRTM 30m（高程）
-  - CHIRPS Daily / GPM IMERG（降雨）
+- Geospatial datasets:
+  - ALOS 12.5M (elevation)
+  - CHIRPS Daily / GPM IMERG (precipitation)
 
 ---
 
-## 📁 项目结构 | Project Structure
+## 📁 Project Structure
 
 ```bash
 sihanoukville-hydrology-analysis/
-├── gee_scripts/             # GEE 脚本（JS 或 Python API）用于提取高程与降雨数据
-│   ├── extract_dem.js
-│   └── get_rainfall_timeseries.py
+├── gee_scripts/                         # Core GEE scripts and analysis components
+│   ├── chirps.py                        # Download CHIRPS daily rainfall data (1981–present)
+│   ├── get_alos_dem.py                  # Download ALOS 12.5m DEM elevation data
+│   ├── get_imerg_rainfall_point.py      # Extract GPM IMERG rainfall data for a target point (2000–2025)
+│   ├── generate_idf.py                  # Fit IDF curves from IMERG time-series and generate tables
+│   ├── rainfall_point_imerg_2000_2025.csv       # Raw point rainfall data (IMERG 2000–2025)
+│   ├── idf_rainfall_table.xlsx          # Fitted rainfall depth IDF table (unit: mm)
+│   ├── idf_intensity_table.xlsx         # Fitted rainfall intensity IDF table (unit: mm/h)
+│   ├── Sihanoukville_IDF_Table.docx     # Summary of rainfall depth and intensity tables (Word format)
+│   ├── IDF Curve_Sihanoukville.png      # IDF curve plot (visualization result)
+│   └── IDF TABLE.jpg                    # Historical IDF table from local government station (scanned image)
 │
-├── notebooks/               # Python 分析与 IDF 拟合的 Jupyter Notebook
-│   └── idf_analysis.ipynb
-│
-├── data/                    # 存放原始数据或说明（如 CSV、GeoTIFF）
-├── outputs/                 # 图表、拟合结果等
-├── README.md                # 本文件
-├── requirements.txt         # Python 依赖列表
-└── .gitignore               # 忽略不需要上传的文件
+├── README.md                            # Project documentation (this file)
+├── requirements.txt                     # Python dependency list
+└── .gitignore                           # Git ignore file configuration
+
