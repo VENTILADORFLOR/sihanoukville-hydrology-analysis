@@ -1,26 +1,18 @@
-"""
-Script: get_chirps_rainfall_point.py
-Author: Ying Li
-Description:
-    Download daily rainfall data (1981–2025) from CHIRPS at a specific point
-    using Google Earth Engine Python API. Exports the results to Google Drive as CSV.
-"""
-
 import ee
 import time
 
-# Initialize the Earth Engine API
-ee.Initialize()
+# 初始化 Earth Engine
+ee.Initialize(project='proven-dryad-452106-j9')
 
 # Define the target location (Sihanoukville, Cambodia)
 point = ee.Geometry.Point([103.656389, 10.540139])  # Longitude, Latitude
 
-# Load CHIRPS Daily Precipitation Data (1981–2025)
-chirps = ee.ImageCollection("UCSB-CHG/CHIRPS/DAILY") \
-    .filterDate('1981-01-01', '2025-01-01') \
+# Load GPM IMERG Final Precipitation Data
+imerg = ee.ImageCollection("NASA/GPM_L3/IMERG_V07") \
+    .filterDate('2000-06-01', '2025-01-01') \
     .select('precipitation')
 
-# Convert each image to a feature with date and precipitation value at the point
+# Convert image to feature
 def image_to_feature(image):
     value = image.reduceRegion(
         reducer=ee.Reducer.first(),
@@ -30,19 +22,19 @@ def image_to_feature(image):
     ).get('precipitation')
 
     return ee.Feature(None, {
-        'date': image.date().format('YYYY-MM-dd'),
-        'precipitation': value
+        'datetime': image.date().format('YYYY-MM-dd HH:mm'),
+        'gpm_precipitation': value
     })
 
 # Map the conversion over the image collection
-features = chirps.map(image_to_feature)
+features = imerg.map(image_to_feature)
 
 # Configure export task to Google Drive
 task = ee.batch.Export.table.toDrive(
     collection=ee.FeatureCollection(features),
-    description="Rainfall_Point_CHIRPS_1981_2025",
+    description="Rainfall_Point_IMERG_2000_2025",
     folder="GEE_Exports",
-    fileNamePrefix="rainfall_point_1981_2025",
+    fileNamePrefix="rainfall_point_imerg_2000_2025",
     fileFormat="CSV"
 )
 

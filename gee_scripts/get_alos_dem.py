@@ -1,43 +1,36 @@
-"""
-Script: get_alos_dem.py
-Author: Ying Li
-Description:
-    Export ALOS PALSAR 12.5m DSM data for Sihanoukville region using
-    Google Earth Engine Python API. Data will be exported to Google Drive.
-"""
-
 import ee
 import time
 
-# Initialize Google Earth Engine
-ee.Initialize()
+# 初始化 Earth Engine
+ee.Initialize(project='proven-dryad-452106-j9')
 
-# Load ALOS PALSAR 12.5m DSM (AW3D30 v3.2) and mosaic into one image
+
+# 加载 ALOS DSM 数据，并合成单张影像
 dataset = ee.ImageCollection("JAXA/ALOS/AW3D30/V3_2").mosaic()
 
-# Define target region (Sihanoukville, Cambodia) as a bounding box
+# 定义研究区域（西哈努克省边界）
 region = ee.Geometry.Rectangle([103.416998, 10.392559, 103.950503, 10.874039])
 
-# Select Digital Surface Model (DSM) and clip to region
+# 选择 DSM 波段并裁剪
 elevation = dataset.select("DSM").clip(region)
 
-# Configure export task to Google Drive
+# 配置导出任务，输出到 Google Drive
 task = ee.batch.Export.image.toDrive(
     image=elevation,
     description="Sihanoukville_ALOS_12m_Elevation_Small",
     folder="GEE_Exports",
-    fileNamePrefix="sihanoukville_alos12m_small",
+    fileNamePrefix="sihanoukville_alos12m_ream",
     region=region,
     scale=12.5,
     maxPixels=1e13,
     fileFormat="GeoTIFF"
 )
 
-# Start the export task
+# 启动导出任务
 task.start()
 print("✅ ALOS 12.5m elevation export task submitted. Please wait...")
 
-# Check task status every 30 seconds
+# 循环检测任务状态
 while True:
     status = task.status()
     state = status["state"]
