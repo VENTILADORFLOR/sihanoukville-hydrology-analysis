@@ -9,9 +9,9 @@ This project focuses on hydrological analysis in Sihanoukville Province, Cambodi
 ## 🔍 项目目标 | Objectives
 
 - 获取并分析西哈努克省的高程（DEM）数据
-- 使用 GEE 提取 CHIRPS / GPM 等降雨数据
+- 使用 GEE 提取 CHIRPS / IMERG 等降雨数据
 - 建立降雨时序分析与数据清洗逻辑
-- 拟合 IDF 曲线，为不同设计重现期提供参考
+- 拟合 IDF 曲线，生成IDF表格，为不同设计重现期提供参考
 - 构建跨平台数据处理与可视化工具
 
 ---
@@ -22,7 +22,7 @@ This project focuses on hydrological analysis in Sihanoukville Province, Cambodi
   - pandas / numpy / matplotlib / scipy
 - Jupyter Notebook
 - 地理数据集：
-  - SRTM 30m（高程）
+  - ALOS 12.5M（高程）
   - CHIRPS Daily / GPM IMERG（降雨）
 
 ---
