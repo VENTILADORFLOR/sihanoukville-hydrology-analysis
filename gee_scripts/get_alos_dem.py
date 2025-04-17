@@ -2,7 +2,7 @@ import ee
 import time
 
 # 初始化 Earth Engine
-ee.Initialize(project='proven-dryad-452106-j9')
+ee.Initialize(project='proven')
 
 
 # 加载 ALOS DSM 数据，并合成单张影像
