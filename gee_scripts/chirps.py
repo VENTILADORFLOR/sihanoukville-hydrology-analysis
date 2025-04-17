@@ -2,7 +2,7 @@ import ee
 import time
 
 # 初始化 Earth Engine
-ee.Initialize(project='proven-dryad-452106-j9')
+ee.Initialize(project='proven-dryad-452106')
 
 # 设置坐标点（西哈努克市）
 point = ee.Geometry.Point([103.656389, 10.540139])
