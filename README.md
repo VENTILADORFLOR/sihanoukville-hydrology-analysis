@@ -32,6 +32,7 @@ sihanoukville-hydrology-analysis/
 ├── gee_scripts/                         # Core GEE scripts and analysis components
 │   ├── chirps.py                        # Download CHIRPS daily rainfall data (1981–present)
 │   ├── get_alos_dem.py                  # Download ALOS 12.5m DEM elevation data
+│   ├── sihanoukville_alos12m_ream.tif   # ALOS 12.5m DEM elevation data
 │   ├── get_imerg_rainfall_point.py      # Extract GPM IMERG rainfall data for a target point (2000–2025)
 │   ├── generate_idf.py                  # Fit IDF curves from IMERG time-series and generate tables
 │   ├── rainfall_point_imerg_2000_2025.csv       # Raw point rainfall data (IMERG 2000–2025)
