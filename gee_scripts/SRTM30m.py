@@ -2,7 +2,7 @@ import ee
 import time
 
 # 初始化 Google Earth Engine
-ee.Initialize(project='proven-dryad-452106-j9')
+ee.Initialize(project='my project id')
 
 # 定义柬埔寨西哈努克省（西港）的研究区域（匹配您的经纬度范围）
 region = ee.Geometry.BBox(103.416998, 10.392559, 103.950503, 10.874039)
