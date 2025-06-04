@@ -40,7 +40,10 @@ sihanoukville-hydrology-analysis/
 │   ├── idf_intensity_table.xlsx         # Fitted rainfall intensity IDF table (unit: mm/h)
 │   ├── Sihanoukville_IDF_Table.docx     # Summary of rainfall depth and intensity tables (Word format)
 │   ├── IDF Curve_Sihanoukville.png      # IDF curve plot (visualization result)
-│   └── IDF TABLE.jpg                    # Historical IDF table from local government station (scanned image)
+│   ├── IDF TABLE.jpg                    # Historical IDF table from local government station (scanned image)
+│   ├── COPERNICUS.py                    # Download COPERNICUS 30 m DEM elevation data
+│   ├── aster.py                         # Download aster 30 m DEM elevation data
+│   └── SRTM30m.py                       # Download SRTM 30 m DEM elevation data
 │
 ├── README.md                            # Project documentation (this file)
 ├── requirements.txt                     # Python dependency list
