@@ -2,7 +2,7 @@ import ee
 import time
 
 # 初始化 Google Earth Engine
-ee.Initialize(project='proven-dryad-452106-j9')
+ee.Initialize(project='my project id')
 
 # 选择 ASTER GDEM 数据集
 dataset = ee.Image("NASA/ASTER_GED/AG100_003")  # 最新 ASTER GDEM 数据集
